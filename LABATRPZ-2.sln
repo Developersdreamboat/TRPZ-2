@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{4A9F0E6F-9CBC-4CA0-AC8B-48ECCD562B44}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLI", "CLI\CLI.csproj", "{7117F595-ED6A-464E-A856-E7BF8EF40277}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "Exceptions\Exceptions.csproj", "{053EC754-CE67-4AC6-97D5-C75F9F804EA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A9F0E6F-9CBC-4CA0-AC8B-48ECCD562B44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A9F0E6F-9CBC-4CA0-AC8B-48ECCD562B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A9F0E6F-9CBC-4CA0-AC8B-48ECCD562B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A9F0E6F-9CBC-4CA0-AC8B-48ECCD562B44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7117F595-ED6A-464E-A856-E7BF8EF40277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7117F595-ED6A-464E-A856-E7BF8EF40277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7117F595-ED6A-464E-A856-E7BF8EF40277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7117F595-ED6A-464E-A856-E7BF8EF40277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{053EC754-CE67-4AC6-97D5-C75F9F804EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{053EC754-CE67-4AC6-97D5-C75F9F804EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{053EC754-CE67-4AC6-97D5-C75F9F804EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{053EC754-CE67-4AC6-97D5-C75F9F804EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6720A0D8-F316-4EA6-A9A2-A6193FAC4B91}
+	EndGlobalSection
+EndGlobal
