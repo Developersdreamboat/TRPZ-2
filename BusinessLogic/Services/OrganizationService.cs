@@ -6,25 +6,64 @@ using Exceptions.BuilderExceptions;
 
 namespace BusinessLogic
 {
-    public class OrganizationService:IOrganizationService
+    public class OrganizationService : IOrganizationService
     {
-        public EmployeeModel Root { get; set; }
-        public EmployeeModel CurrentEmployee { get; set; }
-        public Context ChoosenStrategy { get; set; }
-        public OrganizationService() { }
-        public void AddRoot(string surname, string name, int salary, Position position) 
+        private EmployeeModel root;
+        private EmployeeModel currentEmployee;
+        public EmployeeModel Root
+        {
+            set 
+            {
+                root = value; 
+            }
+            get
+            {
+                if (root is null)
+                {
+                    throw new BuilderDoesNotExistException();
+                }
+                else
+                {
+                    return root;
+                }
+            }
+        }
+        public EmployeeModel CurrentEmployee
+        {
+            set
+            {
+                currentEmployee = value;
+            }
+            get
+            {
+                if (currentEmployee is null)
+                {
+                    throw new BuilderDoesNotExistException();
+                }
+                else
+                {
+                    return currentEmployee;
+                }
+            }
+        }
+        public IShowStructureService ShowStructureService { get; set; }
+        public OrganizationService(IShowStructureService showStructureService) 
+        {
+            ShowStructureService = showStructureService;
+        }
+        public void AddRoot(string surname, string name, int salary, string position) 
         {
             Root = new EmployeeModel(surname, name, salary, position);
             CurrentEmployee = Root;
         }
-        public PersonComponent AddEmployee(string surname, string name, int salary, Position position)
+        public PersonComponent AddEmployee(string surname, string name, int salary, string position)
         {
             var employee = new EmployeeModel(surname,name,salary,position);
             CurrentEmployee.Add(employee);
             CurrentEmployee = employee;
             return employee;
         }
-        public PersonComponent AddWorker(string surname, string name, int salary, Position position)
+        public PersonComponent AddWorker(string surname, string name, int salary, string position)
         {
             var worker = new WorkerModel(surname, name, salary, position);
             CurrentEmployee.Add(worker);
@@ -69,7 +108,7 @@ namespace BusinessLogic
             var result = CurrentEmployee.Subordinates;
             return result;
         }
-        public List<PersonComponent> PositionEmployees(Position position)
+        public List<PersonComponent> PositionEmployees(string position)
         {
             var visitor = new PositionVisitor(position);
             Root.Accept(visitor);
@@ -78,19 +117,7 @@ namespace BusinessLogic
         }
         public List<PersonComponent> ShowStructure(int option)
         {
-            IVisitor visitor = new HierarchyVisitor();
-            Root.Accept(visitor);
-            List<PersonComponent> list = visitor.Employees.ToList();
-            if (option == 1)
-            {
-                ChoosenStrategy = new Context(new ShowByHeightStrategy());
-            }
-            if (option == 2)
-            {
-                ChoosenStrategy = new Context(new DirectSubordinationStrategy());
-            }
-            list = ChoosenStrategy.ExecuteAlgorithm(list);
-            return list;
+            return ShowStructureService.chooseAlgorithm(option,Root);
         }
     }
 }

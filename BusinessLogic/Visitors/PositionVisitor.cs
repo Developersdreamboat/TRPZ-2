@@ -6,8 +6,8 @@ namespace BusinessLogic
 {
     public class PositionVisitor : IVisitor
     {
-        private Position Position { get; set; }
-        public PositionVisitor(Position position)
+        private string Position { get; set; }
+        public PositionVisitor(string position)
         {
             Position = position;
         }

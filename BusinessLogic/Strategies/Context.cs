@@ -12,11 +12,11 @@ namespace BusinessLogic
         {
             ContextStrategy = _strategy;
         }
-
-        public List<PersonComponent> ExecuteAlgorithm(List<PersonComponent> list)
+        public List<PersonComponent> ExecuteAlgorithm(PersonComponent element)
         {
-            List<PersonComponent> result = ContextStrategy.DoAlgorithm(list);
+            List<PersonComponent> result = ContextStrategy.DoAlgorithm(element); ;
             return result;
         }
+
     }
 }

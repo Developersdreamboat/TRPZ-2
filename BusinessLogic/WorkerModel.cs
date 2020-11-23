@@ -7,7 +7,7 @@ namespace BusinessLogic
     public class WorkerModel : PersonComponent
     {
         public WorkerModel() { }
-        public WorkerModel(string surname, string name, int salary, Position position) : base(surname, name, salary, position)
+        public WorkerModel(string surname, string name, int salary, string position) : base(surname, name, salary, position)
         {
         }
         public override void Add(PersonComponent subordinate)

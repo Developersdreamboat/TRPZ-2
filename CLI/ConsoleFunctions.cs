@@ -122,7 +122,7 @@ namespace CLI
         }
         private void ShowCommands()
         {
-            Console.WriteLine("showAllEmployees, addToBase, createHierarchy, " +
+            Console.WriteLine("createHierarchy, " +
                 "addEmployeeWithSubordinates, " + "addEmployeeWithoutSubordinates, \n" +
                 " chooseCurrentEmployee," +
                 "checkSubordinates, checkMaxSalary, checkWithSalary, " +

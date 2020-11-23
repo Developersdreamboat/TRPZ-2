@@ -17,6 +17,12 @@ namespace CLI
         {
             IServiceCollection services = new ServiceCollection();
             services.AddSingleton<IOrganizationService, OrganizationService>();
+            services.AddSingleton<IShowStructureService, ShowStructureService>();
+            services.AddSingleton<IStrategy,ShowByHeightStrategy>();
+            services.AddSingleton<IStrategy, DirectSubordinationStrategy>();
+            services.AddSingleton<PersonComponent,EmployeeModel>();
+            services.AddSingleton<PersonComponent, WorkerModel>();
+            services.AddSingleton<Context>();
             services.AddSingleton<OrganizationFunctions>();
             services.AddSingleton<ConsoleFunctions>();
             provider = services.BuildServiceProvider(true);

@@ -4,10 +4,8 @@ using System.Text;
 
 namespace BusinessLogic
 {
-    public enum Position
+    public interface IStrategy
     {
-        Worker,
-        Manager,
-        Director
+        public List<PersonComponent> DoAlgorithm(PersonComponent element);
     }
 }
