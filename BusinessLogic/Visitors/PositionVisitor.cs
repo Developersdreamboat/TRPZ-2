@@ -6,8 +6,8 @@ namespace BusinessLogic
 {
     public class PositionVisitor : IVisitor
     {
-        private string Position { get; set; }
-        public PositionVisitor(string position)
+        private Position Position { get; set; }
+        public PositionVisitor(Position position)
         {
             Position = position;
         }
@@ -18,9 +18,14 @@ namespace BusinessLogic
             {
                 Employees.Add(employee);
             }
+            foreach (PersonComponent emp in employee.Subordinates)
+            {
+                emp.Accept(this);
+            }
         }
         public void VisitWorker(WorkerModel worker)
         {
+
             if (worker.Position == Position)
             {
                 Employees.Add(worker);

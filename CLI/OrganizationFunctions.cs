@@ -14,15 +14,15 @@ namespace CLI
         }
         public void CreateHierarchy(string surname, string name, int salary, string position)
         {
-            organizationService.AddRoot(surname,name,salary,position);
+            organizationService.AddRoot(surname,name,salary, ConvertToEnum(position));
         }
         public void AddEmployeeToHierarchy(string surname, string name, int salary, string position)
         {
-            organizationService.AddEmployee(surname,name,salary,position);
+            organizationService.AddEmployee(surname,name,salary, ConvertToEnum(position));
         }
         public void AddWorkerToHierarchy(string surname, string name, int salary, string position)
         {
-            organizationService.AddWorker(surname, name, salary,position);
+            organizationService.AddWorker(surname, name, salary,ConvertToEnum(position));
         }
         public void SetCurrentEmployee(string surname, string name)
         {
@@ -54,12 +54,24 @@ namespace CLI
         }
         public void PositionEmployees(string position)
         {
-
-            var show = organizationService.PositionEmployees(position);
+            var show = organizationService.PositionEmployees(ConvertToEnum(position));
             foreach (var e in show)
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+        public void Show(int option)
+        {
+            var show = organizationService.ShowStructure(option);
+            foreach (var e in show)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        private Position ConvertToEnum(string value) 
+        {
+            var result = (Position)Enum.Parse(typeof(Position), value);
+            return result;
         }
     }
 }

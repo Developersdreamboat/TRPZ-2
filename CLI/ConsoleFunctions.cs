@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BusinessLogic;
 using Exceptions.BuilderExceptions;
 using Exceptions.ConsoleExceptions;
 using Exceptions.LeafExceptions;
@@ -72,6 +73,11 @@ namespace CLI
                             string subName = Console.ReadLine();
                             organizationFunctions.EmployeeSubordinates(subSurname,subName);
                             break;
+                        case "checkPosition":
+                            Console.WriteLine("Write position to check");
+                            string position = Console.ReadLine();
+                            organizationFunctions.PositionEmployees(position);
+                            break;
                         case "checkMaxSalary":
                             organizationFunctions.MaxSalaryEmployees();
                             break;
@@ -80,12 +86,11 @@ namespace CLI
                             int hierarchyMoreThanSalary = Convert.ToInt32(Console.ReadLine());
                             organizationFunctions.MoreThanSalaryEmployees(hierarchyMoreThanSalary);
                             break;
-                        ////case "showByDirectSubordination":
-                        ////    functional.ShowByDirectSubordination();
-                        ////    break;
-                        ////case "showByHeightPosition":
-                        ////    functional.ShowByHeightPosition();
-                        ////    break;
+                        case "show":
+                            Console.WriteLine("Choose an option: 1 to show by height position, 2 for direct subordination");
+                            int showOption = Convert.ToInt32(Console.ReadLine());
+                                organizationFunctions.Show(showOption);
+                            break;
                         case "help":
                             ShowCommands();
                             break;
@@ -121,7 +126,7 @@ namespace CLI
                 "addEmployeeWithSubordinates, " + "addEmployeeWithoutSubordinates, \n" +
                 " chooseCurrentEmployee," +
                 "checkSubordinates, checkMaxSalary, checkWithSalary, " +
-                "showByDirectSubordination,\n showByHeightPosition");
+                "checkPosition,\n show");
         }
     }
 }

@@ -25,6 +25,10 @@ namespace BusinessLogic
                 maxSalary = employee.Salary;
                 employees.Add(employee);
             }
+            foreach (PersonComponent emp in employee.Subordinates)
+            {
+                emp.Accept(this);
+            }
         }
         public void VisitWorker(WorkerModel worker)
         {

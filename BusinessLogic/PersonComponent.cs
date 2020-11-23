@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogic
 {
@@ -7,10 +9,10 @@ namespace BusinessLogic
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Position { get; set; }
+        public Position Position { get; set; }
         public int Salary { get; set; }
         public PersonComponent() { }
-        public PersonComponent(string surname, string name, int salary, string position)
+        public PersonComponent(string surname, string name, int salary, Position position)
         {
             Surname = surname;
             Name = name;
