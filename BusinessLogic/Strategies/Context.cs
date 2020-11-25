@@ -12,7 +12,7 @@ namespace BusinessLogic
         {
             ContextStrategy = _strategy;
         }
-        public List<PersonComponent> ExecuteAlgorithm(PersonComponent element)
+        public List<PersonComponent> ExecuteAlgorithm(EmployeeModel element)
         {
             List<PersonComponent> result = ContextStrategy.DoAlgorithm(element); ;
             return result;

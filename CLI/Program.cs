@@ -11,17 +11,13 @@ namespace CLI
         {
             RegisterServices();
             provider.CreateScope().ServiceProvider.GetRequiredService<ConsoleFunctions>().Initialize();
-            Environment.Exit(0);
         }
         private static void RegisterServices()
         {
             IServiceCollection services = new ServiceCollection();
             services.AddSingleton<IOrganizationService, OrganizationService>();
-            services.AddSingleton<IShowStructureService, ShowStructureService>();
             services.AddSingleton<IStrategy,ShowByHeightStrategy>();
-            services.AddSingleton<IStrategy, DirectSubordinationStrategy>();
-            services.AddSingleton<PersonComponent,EmployeeModel>();
-            services.AddSingleton<PersonComponent, WorkerModel>();
+            services.AddSingleton<IStrategy,DirectSubordinationStrategy>();
             services.AddSingleton<Context>();
             services.AddSingleton<OrganizationFunctions>();
             services.AddSingleton<ConsoleFunctions>();

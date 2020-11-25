@@ -4,8 +4,9 @@ using System.Text;
 
 namespace BusinessLogic
 {
-    public interface IStrategy
+    public enum StrategyOption
     {
-        public List<PersonComponent> DoAlgorithm(EmployeeModel element);
+        Height = 1,
+        Directsubordination = 2
     }
 }

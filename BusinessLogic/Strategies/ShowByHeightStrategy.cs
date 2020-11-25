@@ -9,11 +9,11 @@ namespace BusinessLogic
     {
         private PersonComponent element;
         private List<PersonComponent> sortedList = new List<PersonComponent>();
-        public ShowByHeightStrategy(PersonComponent element) 
+        public ShowByHeightStrategy(EmployeeModel element) 
         {
             this.element = element;
         }
-        public List<PersonComponent> DoAlgorithm(PersonComponent element) 
+        public List<PersonComponent> DoAlgorithm(EmployeeModel element) 
         {
             Queue<PersonComponent> queue = new Queue<PersonComponent>();
             queue.Enqueue(element);

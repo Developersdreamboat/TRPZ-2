@@ -49,13 +49,13 @@ namespace CLI
                             organizationFunctions.AddEmployeeToHierarchy(employeeSurname,employeeName, employeeSalary, employeePosition);
                             break;
                         case "addEmployeeWithoutSubordinates":
-                            Console.WriteLine("Please, type a surname of employee with subordinates");
+                            Console.WriteLine("Please, type a surname of employee without subordinates");
                             string workerSurname = Console.ReadLine();
-                            Console.WriteLine("Please, type a name of employee with subordinates");
+                            Console.WriteLine("Please, type a name of employee without subordinates");
                             string workerName = Console.ReadLine();
-                            Console.WriteLine("Please, type a salary of employee with subordinates");
+                            Console.WriteLine("Please, type a salary of employee without subordinates");
                             int workerSalary = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine("Please, type a position of employee with subordinates");
+                            Console.WriteLine("Please, type a position of employee without subordinates");
                             string workerPosition = Console.ReadLine();
                             organizationFunctions.AddWorkerToHierarchy(workerSurname,workerName,workerSalary,workerPosition);
                             break;
@@ -87,8 +87,8 @@ namespace CLI
                             organizationFunctions.MoreThanSalaryEmployees(hierarchyMoreThanSalary);
                             break;
                         case "show":
-                            Console.WriteLine("Choose an option: 1 to show by height position, 2 for direct subordination");
-                            int showOption = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Choose an option: Height to show by height position, Directsubordination for direct subordination");
+                            string showOption = Console.ReadLine();
                                 organizationFunctions.Show(showOption);
                             break;
                         case "help":
@@ -108,7 +108,7 @@ namespace CLI
                 }
                 catch (ElementDoesNotExistException e)
                 {
-                    Console.WriteLine("Hierarchy doesn`t have employee with this id");
+                    Console.WriteLine("Hierarchy doesn`t have employee with this parameters");
                 }
                 catch (BuilderDoesNotExistException e)
                 {

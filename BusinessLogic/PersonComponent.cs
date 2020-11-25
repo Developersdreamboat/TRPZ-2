@@ -6,7 +6,6 @@ namespace BusinessLogic
 {
     public abstract class PersonComponent
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Position { get; set; }
@@ -22,10 +21,20 @@ namespace BusinessLogic
         public List<PersonComponent> Subordinates { get; set; } = new List<PersonComponent>();
         public abstract void Accept(IVisitor visitor);
         public abstract void Add(PersonComponent subordinate);
-        public abstract void Remove(PersonComponent subordinate);
+        public abstract void Remove(PersonComponent subordinate); 
+        public override bool Equals(Object obj)
+        {
+            if (obj is PersonComponent)
+            {
+                var that = obj as PersonComponent;
+                return this.Surname == that.Surname && this.Name == that.Name && this.Salary == that.Salary && this.Position == that.Position;
+            }
+
+            return false;
+        }
         public override string ToString()
         {
-            return string.Concat("ID:", Id, ", Surname:", Surname, ", Name: ", Name, ", Salary: ", Salary, ", Position: ", Position);
+            return string.Concat("Surname:", Surname, ", Name: ", Name, ", Salary: ", Salary, ", Position: ", Position);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace BusinessLogic
     {
         private EmployeeModel root;
         private EmployeeModel currentEmployee;
+        private Context choosenStrategy;
         public EmployeeModel Root
         {
             set 
@@ -46,28 +47,22 @@ namespace BusinessLogic
                 }
             }
         }
-        public IShowStructureService ShowStructureService { get; set; }
-        public OrganizationService(IShowStructureService showStructureService) 
+        public OrganizationService() 
         {
-            ShowStructureService = showStructureService;
         }
-        public void AddRoot(string surname, string name, int salary, string position) 
+        public void AddRoot(EmployeeModel root) 
         {
-            Root = new EmployeeModel(surname, name, salary, position);
+            Root = root;
             CurrentEmployee = Root;
         }
-        public PersonComponent AddEmployee(string surname, string name, int salary, string position)
+        public void AddEmployee(EmployeeModel employee)
         {
-            var employee = new EmployeeModel(surname,name,salary,position);
             CurrentEmployee.Add(employee);
             CurrentEmployee = employee;
-            return employee;
         }
-        public PersonComponent AddWorker(string surname, string name, int salary, string position)
+        public void AddWorker(WorkerModel worker)
         {
-            var worker = new WorkerModel(surname, name, salary, position);
             CurrentEmployee.Add(worker);
-            return worker;
         }
         public EmployeeModel SetCurrentEmployee(string surname, string name)
         {
@@ -115,9 +110,18 @@ namespace BusinessLogic
             var result = visitor.Employees;
             return result;
         }
-        public List<PersonComponent> ShowStructure(int option)
+        public List<PersonComponent> ShowStructure(StrategyOption option)
         {
-            return ShowStructureService.chooseAlgorithm(option,Root);
+            if (option == StrategyOption.Height)
+            {
+                choosenStrategy = new Context(new ShowByHeightStrategy(root));
+            }
+            if (option == StrategyOption.Directsubordination)
+            {
+                choosenStrategy = new Context(new DirectSubordinationStrategy(root));
+            }
+            List<PersonComponent> list = choosenStrategy.ExecuteAlgorithm(root);
+            return list;
         }
     }
 }

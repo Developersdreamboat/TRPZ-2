@@ -10,11 +10,11 @@ namespace BusinessLogic
         private PersonComponent element;
         private List<PersonComponent> sortedList = new List<PersonComponent>();
 
-        public DirectSubordinationStrategy(PersonComponent element)
+        public DirectSubordinationStrategy(EmployeeModel element)
         {
             this.element = element;
         }
-        public List<PersonComponent> DoAlgorithm(PersonComponent element)
+        public List<PersonComponent> DoAlgorithm(EmployeeModel element)
         {
             Stack<PersonComponent> stack = new Stack<PersonComponent>();
             stack.Push(element);

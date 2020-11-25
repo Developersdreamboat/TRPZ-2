@@ -14,15 +14,18 @@ namespace CLI
         }
         public void CreateHierarchy(string surname, string name, int salary, string position)
         {
-            organizationService.AddRoot(surname,name,salary, position);
+            EmployeeModel root = new EmployeeModel(surname,name,salary,position);
+            organizationService.AddRoot(root);
         }
         public void AddEmployeeToHierarchy(string surname, string name, int salary, string position)
         {
-            organizationService.AddEmployee(surname,name,salary, position);
+            EmployeeModel employee = new EmployeeModel(surname, name, salary, position);
+            organizationService.AddEmployee(employee);
         }
         public void AddWorkerToHierarchy(string surname, string name, int salary, string position)
         {
-            organizationService.AddWorker(surname, name, salary,position);
+            WorkerModel worker = new WorkerModel(surname, name, salary, position);
+            organizationService.AddWorker(worker);
         }
         public void SetCurrentEmployee(string surname, string name)
         {
@@ -60,9 +63,9 @@ namespace CLI
                 Console.WriteLine(e.ToString());
             }
         }
-        public void Show(int option)
+        public void Show(string option)
         {
-            var show = organizationService.ShowStructure(option);
+            var show = organizationService.ShowStructure((StrategyOption)Enum.Parse(typeof(StrategyOption),option));
             foreach (var e in show)
             {
                 Console.WriteLine(e.ToString());
