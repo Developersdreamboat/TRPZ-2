@@ -1,23 +1,25 @@
-﻿using System;
-using BusinessLogic;
+﻿using BusinessLogic;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace CLI
 {
-    class Program
+    internal class Program
     {
         private static IServiceProvider provider { get; set; }
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             RegisterServices();
             provider.CreateScope().ServiceProvider.GetRequiredService<ConsoleFunctions>().Initialize();
         }
+
         private static void RegisterServices()
         {
             IServiceCollection services = new ServiceCollection();
             services.AddSingleton<IOrganizationService, OrganizationService>();
-            services.AddSingleton<IStrategy,ShowByHeightStrategy>();
-            services.AddSingleton<IStrategy,DirectSubordinationStrategy>();
+            services.AddSingleton<IStrategy, ShowByHeightStrategy>();
+            services.AddSingleton<IStrategy, DirectSubordinationStrategy>();
             services.AddSingleton<Context>();
             services.AddSingleton<OrganizationFunctions>();
             services.AddSingleton<ConsoleFunctions>();

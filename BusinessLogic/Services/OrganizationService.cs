@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Exceptions.BuilderExceptions;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using Exceptions.BuilderExceptions;
 
 namespace BusinessLogic
 {
@@ -10,12 +8,13 @@ namespace BusinessLogic
     {
         private EmployeeModel root;
         private EmployeeModel currentEmployee;
-        private Context choosenStrategy;
+        private Context chosenStrategy;
+
         public EmployeeModel Root
         {
-            set 
+            set
             {
-                root = value; 
+                root = value;
             }
             get
             {
@@ -23,12 +22,11 @@ namespace BusinessLogic
                 {
                     throw new BuilderDoesNotExistException();
                 }
-                else
-                {
-                    return root;
-                }
+
+                return root;
             }
         }
+
         public EmployeeModel CurrentEmployee
         {
             set
@@ -41,29 +39,32 @@ namespace BusinessLogic
                 {
                     throw new BuilderDoesNotExistException();
                 }
-                else
-                {
-                    return currentEmployee;
-                }
+
+                return currentEmployee;
             }
         }
-        public OrganizationService() 
+
+        public OrganizationService()
         {
         }
-        public void AddRoot(EmployeeModel root) 
+
+        public void AddRoot(EmployeeModel root)
         {
             Root = root;
             CurrentEmployee = Root;
         }
+
         public void AddEmployee(EmployeeModel employee)
         {
             CurrentEmployee.Add(employee);
             CurrentEmployee = employee;
         }
+
         public void AddWorker(WorkerModel worker)
         {
             CurrentEmployee.Add(worker);
         }
+
         public EmployeeModel SetCurrentEmployee(string surname, string name)
         {
             var employeeStack = new Stack<EmployeeModel>();
@@ -83,26 +84,29 @@ namespace BusinessLogic
             }
             throw new ElementDoesNotExistException();
         }
+
         public List<PersonComponent> MoreThanValueSalaryEmployees(int salary)
         {
             IVisitor visitor = new EmployeeMoreThanValueSalaryVisitor(salary);
             Root.Accept(visitor);
             var result = visitor.Employees;
             return result;
-
         }
+
         public List<PersonComponent> MaxSalaryEmployees()
         {
             IVisitor employeeVisitor = new EmployeeMaxSalaryVisitor();
             Root.Accept(employeeVisitor);
             return employeeVisitor.Employees;
         }
+
         public List<PersonComponent> EmployeeSubordinates(string surname, string name)
         {
-            SetCurrentEmployee(surname,name);
+            SetCurrentEmployee(surname, name);
             var result = CurrentEmployee.Subordinates;
             return result;
         }
+
         public List<PersonComponent> PositionEmployees(string position)
         {
             var visitor = new PositionVisitor(position);
@@ -110,17 +114,18 @@ namespace BusinessLogic
             var result = visitor.Employees;
             return result;
         }
+
         public List<PersonComponent> ShowStructure(StrategyOption option)
         {
             if (option == StrategyOption.Height)
             {
-                choosenStrategy = new Context(new ShowByHeightStrategy(root));
+                chosenStrategy = new Context(new ShowByHeightStrategy(root));
             }
             if (option == StrategyOption.Directsubordination)
             {
-                choosenStrategy = new Context(new DirectSubordinationStrategy(root));
+                chosenStrategy = new Context(new DirectSubordinationStrategy(root));
             }
-            List<PersonComponent> list = choosenStrategy.ExecuteAlgorithm(root);
+            List<PersonComponent> list = chosenStrategy.ExecuteAlgorithm(root);
             return list;
         }
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
@@ -12,11 +10,11 @@ namespace BusinessLogic
         {
             ContextStrategy = _strategy;
         }
+
         public List<PersonComponent> ExecuteAlgorithm(EmployeeModel element)
         {
-            List<PersonComponent> result = ContextStrategy.DoAlgorithm(element); ;
+            List<PersonComponent> result = ContextStrategy.DisplayEmployees(element); ;
             return result;
         }
-
     }
 }

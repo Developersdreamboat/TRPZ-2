@@ -1,10 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Runtime.Serialization;
 
 namespace Exceptions.LeafExceptions
 {
-    public class LeafRemovingException:Exception
+    [Serializable]
+    public class LeafRemovingException : Exception
     {
+        public LeafRemovingException()
+        {
+        }
+
+        public LeafRemovingException(string message)
+            : base(message)
+        {
+        }
+
+        public LeafRemovingException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
+        // Without this constructor, deserialization will fail
+        protected LeafRemovingException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
     }
 }

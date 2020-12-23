@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace BusinessLogic
 {
     public class EmployeeMaxSalaryVisitor : IVisitor
     {
-        int maxSalary = 0;
+        private int maxSalary = 0;
         private List<PersonComponent> employees = new List<PersonComponent>();
+
         public List<PersonComponent> Employees
         {
             get
@@ -18,6 +17,7 @@ namespace BusinessLogic
             }
             set { }
         }
+
         public void VisitEmployee(EmployeeModel employee)
         {
             if (employee.Salary >= maxSalary)
@@ -30,6 +30,7 @@ namespace BusinessLogic
                 emp.Accept(this);
             }
         }
+
         public void VisitWorker(WorkerModel worker)
         {
             if (worker.Salary >= maxSalary)
@@ -38,6 +39,5 @@ namespace BusinessLogic
                 employees.Add(worker);
             }
         }
-
     }
 }

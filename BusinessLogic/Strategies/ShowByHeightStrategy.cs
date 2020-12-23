@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
-    public class ShowByHeightStrategy:IStrategy
+    public class ShowByHeightStrategy : IStrategy
     {
         private PersonComponent element;
         private List<PersonComponent> sortedList = new List<PersonComponent>();
-        public ShowByHeightStrategy(EmployeeModel element) 
+
+        public ShowByHeightStrategy(EmployeeModel element)
         {
             this.element = element;
         }
-        public List<PersonComponent> DoAlgorithm(EmployeeModel element) 
+
+        public List<PersonComponent> DisplayEmployees(EmployeeModel element)
         {
             Queue<PersonComponent> queue = new Queue<PersonComponent>();
             queue.Enqueue(element);
@@ -27,6 +26,5 @@ namespace BusinessLogic
             }
             return sortedList;
         }
-        
     }
 }

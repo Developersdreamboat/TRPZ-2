@@ -1,21 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
-   public interface IOrganizationService
+    public interface IOrganizationService
     {
-        public EmployeeModel Root { get; set; }
-        public EmployeeModel CurrentEmployee { get; set; }
-        public void AddRoot(EmployeeModel root);
-        public void AddEmployee(EmployeeModel employee);
-        public void AddWorker(WorkerModel worker);
-        public EmployeeModel SetCurrentEmployee(string surname, string name);
-        public List<PersonComponent> MoreThanValueSalaryEmployees(int salary);
-        public List<PersonComponent> MaxSalaryEmployees();
-        public List<PersonComponent> EmployeeSubordinates(string surname, string name);
-        public List<PersonComponent> PositionEmployees(string position); 
-        public List<PersonComponent> ShowStructure(StrategyOption option);
+        EmployeeModel Root { get; set; }
+        EmployeeModel CurrentEmployee { get; set; }
+
+        void AddRoot(EmployeeModel root);
+
+        void AddEmployee(EmployeeModel employee);
+
+        void AddWorker(WorkerModel worker);
+
+        EmployeeModel SetCurrentEmployee(string surname, string name);
+
+        List<PersonComponent> MoreThanValueSalaryEmployees(int salary);
+
+        List<PersonComponent> MaxSalaryEmployees();
+
+        List<PersonComponent> EmployeeSubordinates(string surname, string name);
+
+        List<PersonComponent> PositionEmployees(string position);
+
+        List<PersonComponent> ShowStructure(StrategyOption option);
     }
 }

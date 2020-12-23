@@ -1,64 +1,67 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Linq;
-using Exceptions.BuilderExceptions;
+﻿using BusinessLogic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using BusinessLogic;
-
+using System.Collections.Generic;
 
 namespace Unit_testing
 {
     [TestClass]
     public class VisitorTest
     {
+        private EmployeeModel _employee;
+        private EmployeeModel _employee1;
+        private EmployeeModel _employee2;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _employee = new EmployeeModel() { Position = "testposition", Salary = 500 };
+            _employee1 = new EmployeeModel() { Position = "pos", Salary = 100 };
+            _employee2 = new EmployeeModel() { Position = "testposition", Salary = 500 };
+        }
+
         [TestMethod]
-        public void DoesReturnRightElement_Position() 
+        public void DoesReturnRightElement_Position()
         {
             //Arrange
-            var employee = new EmployeeModel() { Position = "testposition"};
-            var employee1 = new EmployeeModel() { Position ="pos"};
             var visitor = new Mock<PositionVisitor>("testposition");
-            var expectedposition = employee;
+            var expectedPosition = _employee;
             //Act
-            visitor.Object.VisitEmployee(employee);
-            visitor.Object.VisitEmployee(employee1);
+            visitor.Object.VisitEmployee(_employee);
+            visitor.Object.VisitEmployee(_employee1);
             //Assert
-            var actualposition = visitor.Object.Employees.Find(x=>x.Position=="testposition");
-            Assert.AreEqual(expectedposition, actualposition);
+            var actualPosition = visitor.Object.Employees.Find(x => x.Position == "testposition");
+            Assert.AreEqual(expectedPosition, actualPosition);
         }
+
         [TestMethod]
         public void DoesReturnRightElements_MoreThanValueSalary()
         {
             //Arrange
-            var employee = new EmployeeModel() { Salary = 500 };
-            var employee1 = new EmployeeModel() { Salary = 100 };
-            var employee2 = new EmployeeModel() { Salary =  400 };
             var visitor = new Mock<EmployeeMoreThanValueSalaryVisitor>(200);
-            var expectedsalary = new List<PersonComponent>() {employee,employee2 };
+            var expectedSalary = new List<PersonComponent>() { _employee, _employee2 };
             //Act
-            visitor.Object.VisitEmployee(employee);
-            visitor.Object.VisitEmployee(employee1);
-            visitor.Object.VisitEmployee(employee2);
+            visitor.Object.VisitEmployee(_employee);
+            visitor.Object.VisitEmployee(_employee1);
+            visitor.Object.VisitEmployee(_employee2);
             //Assert
-            var actualsalary = visitor.Object.Employees;
-            CollectionAssert.AreEqual(expectedsalary, actualsalary);
+            var actualSalary = visitor.Object.Employees;
+            CollectionAssert.AreEqual(expectedSalary, actualSalary);
         }
+
         [TestMethod]
         public void DoesReturnRightElements_MaxSalary()
         {
             //Arrange
-            var employee = new EmployeeModel() { Salary = 500 };
-            var employee1 = new EmployeeModel() { Salary = 100 };
-            var employee2 = new EmployeeModel() { Salary = 400 };
             var visitor = new Mock<EmployeeMaxSalaryVisitor>();
-            var expectedsalary = new List<PersonComponent>() { employee };
+            var expectedSalary = new List<PersonComponent>() { _employee, _employee2 };
             //Act
-            visitor.Object.VisitEmployee(employee);
-            visitor.Object.VisitEmployee(employee1);
-            visitor.Object.VisitEmployee(employee2);
+            visitor.Object.VisitEmployee(_employee);
+            visitor.Object.VisitEmployee(_employee1);
+            visitor.Object.VisitEmployee(_employee2);
             //Assert
-            var actualsalary = visitor.Object.Employees;
-            CollectionAssert.AreEqual(expectedsalary, actualsalary);
+            var actualSalary = visitor.Object.Employees;
+            CollectionAssert.AreEqual(expectedSalary, actualSalary);
         }
     }
 }

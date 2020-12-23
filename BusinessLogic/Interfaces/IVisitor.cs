@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
     public interface IVisitor
     {
-        public void VisitEmployee(EmployeeModel employee);
-        public void VisitWorker(WorkerModel worker);
-        public List<PersonComponent> Employees { get; set; }
+        void VisitEmployee(EmployeeModel employee);
+
+        void VisitWorker(WorkerModel worker);
+
+        List<PersonComponent> Employees { get; set; }
     }
 }

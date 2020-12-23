@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
     public interface IStrategy
     {
-        public List<PersonComponent> DoAlgorithm(EmployeeModel element);
+        List<PersonComponent> DisplayEmployees(EmployeeModel element);
     }
 }

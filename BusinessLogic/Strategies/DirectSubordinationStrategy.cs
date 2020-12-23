@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
-    public class DirectSubordinationStrategy:IStrategy
+    public class DirectSubordinationStrategy : IStrategy
     {
         private PersonComponent element;
         private List<PersonComponent> sortedList = new List<PersonComponent>();
@@ -14,7 +11,8 @@ namespace BusinessLogic
         {
             this.element = element;
         }
-        public List<PersonComponent> DoAlgorithm(EmployeeModel element)
+
+        public List<PersonComponent> DisplayEmployees(EmployeeModel element)
         {
             Stack<PersonComponent> stack = new Stack<PersonComponent>();
             stack.Push(element);
